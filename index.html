@@ -299,8 +299,8 @@
         <h1>Backend & AI engineer, <span class="grad">building systems that reason.</span></h1>
         <p class="hero-sub">
           I'm <b>Mohamed Elguindy</b> — a Computer Engineering student in Cairo building
-          <b>agentic LLM pipelines</b> and production backends with Python, FastAPI, and Java/Spring Boot.
-          Currently an AI Intern at Nokia.
+          <b>agentic LLM pipelines</b> and scalable, event-driven backends with Python, Node.js, and Java.
+          Recently completed Software Engineering & AI internships at CyShield and Nokia.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View projects</a>
@@ -362,14 +362,14 @@
       <p class="section-desc">The short version.</p>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm a Computer Engineering student at the <b>Arab Academy for Science and Technology</b>, graduating 2027, with a focus on backend systems and agentic AI. Most of my work sits at the intersection of the two: <b>FastAPI services that wrap multi-agent LLM pipelines</b> built with LangGraph, DSPy, and LlamaIndex.</p>
-          <p>Outside of internships, I've built everything from a GPT-style transformer from scratch to a compound AI fitness coach with deterministic macro calculations layered under LLM generation. I care about systems that are <b>observable, containerized, and actually ship</b> — not just notebooks.</p>
+          <p>I'm a Computer Engineering student at the <b>Arab Academy for Science and Technology</b>, graduating 2027, with a focus on backend systems and agentic AI. My work spans from architecting <b>robust backends that orchestrate multi-agent LLM pipelines</b> to engineering <b>highly scalable, event-driven platforms</b> with Node.js, Redis, and message queues.</p>
+          <p>Whether I'm building a GPT-style transformer from scratch, a compound AI fitness coach, or a robust webhook delivery platform with strict rate-limiting, I care about systems that are <b>secure, containerized, and built to scale</b> — not just notebooks.</p>
         </div>
         <div class="stat-list">
           <div class="stat"><span class="stat-label">Location</span><span class="stat-value">Cairo, Egypt</span></div>
           <div class="stat"><span class="stat-label">Education</span><span class="stat-value">AAST · GPA 3.74</span></div>
           <div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Backend + Agentic AI</span></div>
-          <div class="stat"><span class="stat-label">Core stack</span><span class="stat-value">Python · FastAPI · Java</span></div>
+          <div class="stat"><span class="stat-label">Core stack</span><span class="stat-value">Python · FastAPI · Node.js · Java</span></div>
         </div>
       </div>
     </div>
@@ -382,12 +382,27 @@
       <p class="section-desc">Internships, in reverse chronological order.</p>
 
       <div class="job">
-        <div class="job-period">08/2026 – Present</div>
+        <div class="job-period">08/2026 – 09/2026</div>
         <div>
-          <div class="job-role">AI Intern</div>
+          <div class="job-role">Software Engineering Intern</div>
+          <div class="job-org">CyShield</div>
+          <ul>
+            <li>Co-developed a highly scalable, event-driven <a href="https://github.com/ShadowOfDeath25/hooks" target="_blank" style="color:var(--teal);text-decoration:none;">webhook delivery platform</a> from scratch, driving key system design decisions for reliability and fault tolerance.</li>
+            <li>Built core services with Node.js, Fastify, and Docker, integrating Redis and BullMQ for asynchronous job queuing.</li>
+            <li>Engineered robust rate-limiting, HMAC payload signing, and PostgreSQL/Drizzle data persistence.</li>
+            <li>Worked in an Agile/Scrum environment, actively participating in sprint planning and rigorous PR reviews.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-period">08/2026 – 09/2026</div>
+        <div>
+          <div class="job-role">AI Engineering Intern</div>
           <div class="job-org">Nokia — Cairo, Egypt</div>
           <ul>
-            <li>Working within the Network Infrastructure and IP programs to integrate AI solutions.</li>
+            <li>Attended intensive sessions focused on Automation and Robotic Process Automation (RPA).</li>
+            <li>Gained foundational knowledge in building and orchestrating automated enterprise workflows.</li>
           </ul>
         </div>
       </div>
@@ -441,6 +456,44 @@
       <h2 class="section-title">Projects</h2>
       <p class="section-desc">Things I've built end to end.</p>
       <div class="projects">
+        
+        <div class="project" data-tilt>
+          <div class="project-media">
+            <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="glow4" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#7EDBC6" stop-opacity="0.16"/>
+                  <stop offset="100%" stop-color="#7EDBC6" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect width="400" height="200" fill="url(#glow4)"/>
+              <g font-family="IBM Plex Mono" font-size="9" fill="#586870">
+                <rect x="100" y="60" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="125" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">Sender</text>
+                
+                <rect x="250" y="60" width="60" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="280" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">BullMQ</text>
+                
+                <rect x="175" y="130" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="200" y="144" text-anchor="middle" fill="#93A3AB" font-size="8">Webhook</text>
+                
+                <path d="M150,70 L250,70" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
+                <path d="M280,80 L200,130" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
+                
+                <circle r="2.5" fill="#5FC3B0"><animateMotion dur="2s" repeatCount="indefinite" path="M150,70 L250,70"/></circle>
+                <circle r="2.5" fill="#E8A33D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M280,80 L200,130"/></circle>
+              </g>
+              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#586870" letter-spacing="1">EVENT-DRIVEN WEBHOOK DELIVERY</text>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <div class="project-name">Webhook Delivery Platform</div>
+              <div class="project-tags"><span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">Redis</span><span class="tag">BullMQ</span></div>
+            </div>
+            <div class="project-desc">A highly scalable, event-driven webhook delivery service. Engineered robust rate-limiting and retry mechanisms, managed reliable job queuing for asynchronous tasks with Redis and BullMQ, and secured data payloads using HMAC-based webhook signing. Data persistence handled via PostgreSQL and Drizzle ORM.</div>
+          </div>
+        </div>
 
         <div class="project" data-tilt>
           <div class="project-media">
@@ -553,7 +606,7 @@
       <div class="skills-grid">
         <div class="skill-block"><h4>Core Languages</h4><div class="skill-tags"><span>Java</span><span>Python</span><span>C++</span><span>SQL</span></div></div>
         <div class="skill-block"><h4>AI & Deep Learning</h4><div class="skill-tags"><span>LangGraph</span><span>DSPy</span><span>LlamaIndex</span><span>Agentic RAG</span><span>PyTorch</span><span>Prompt Engineering</span><span>Transformers</span></div></div>
-        <div class="skill-block"><h4>Backend & DevOps</h4><div class="skill-tags"><span>FastAPI</span><span>REST APIs</span><span>Docker</span><span>PostgreSQL</span></div></div>
+        <div class="skill-block"><h4>Backend & DevOps</h4><div class="skill-tags"><span>FastAPI</span><span>Node.js</span><span>Fastify</span><span>REST APIs</span><span>Docker</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span><span>Drizzle ORM</span></div></div>
         <div class="skill-block"><h4>Data & Tools</h4><div class="skill-tags"><span>Git/GitHub</span><span>Postman</span><span>Langfuse</span><span>Groq</span><span>OpenAI</span></div></div>
       </div>
     </div>
