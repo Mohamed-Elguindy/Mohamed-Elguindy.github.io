@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Elguindy — Backend & AI Engineer</title>
+<title>Mohamed Elguindy — Backend &amp; AI Engineer</title>
+<meta name="description" content="Mohamed Elguindy — Backend and AI Engineer specializing in Python (FastAPI), Java (Spring Boot), Node.js (Fastify), Hybrid RAG, and multi-agent LLM systems.">
+<meta property="og:title" content="Mohamed Elguindy — Backend &amp; AI Engineer">
+<meta property="og:description" content="Backend systems, event-driven microservices, Hybrid RAG, and production compound AI pipelines.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0F12'/%3E%3Ctext x='6' y='22' font-family='monospace' font-size='17' font-weight='700' fill='%235FC3B0'%3Ee.%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,17 +22,18 @@
     --line-bright:#33424B;
     --text:#EDF2F4;
     --text-dim:#93A3AB;
-    --text-faint:#586870;
+    --text-faint:#6E8089;
     --teal:#5FC3B0;
     --teal-bright:#7EDBC6;
     --amber:#E8A33D;
-    --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
-    --sans: 'Inter', -apple-system, sans-serif;
-    --mx: 50%;
-    --my: 50%;
+    --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    --sans:'Inter', -apple-system, sans-serif;
+    --mx:50%;
+    --my:50%;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  [hidden]{display:none !important;}
+  html{scroll-behavior:smooth;scroll-padding-top:76px;}
   body{
     background:var(--bg);
     color:var(--text);
@@ -40,6 +46,23 @@
   ::selection{background:var(--teal);color:#0B1113;}
   a{color:inherit;}
   a:focus-visible, button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+
+  .visually-hidden:where(:not(:focus-within, :active)){
+    position:absolute !important;
+    clip-path:inset(50%) !important;
+    overflow:hidden !important;
+    width:1px !important;
+    height:1px !important;
+    margin:-1px !important;
+    padding:0 !important;
+    border:0 !important;
+    white-space:nowrap !important;
+  }
+  .skip-link{
+    position:fixed;top:12px;left:16px;z-index:200;
+    background:var(--teal);color:#0B1113;font-family:var(--mono);font-size:12.5px;font-weight:700;
+    padding:9px 14px;border-radius:6px;text-decoration:none;
+  }
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
@@ -61,27 +84,37 @@
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
     backdrop-filter:blur(14px);
-    background:rgba(11,15,18,0.72);
+    background:rgba(11,15,18,0.78);
     border-bottom:1px solid var(--line);
     transition:background .3s ease;
   }
   nav.wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .brand{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text);letter-spacing:0.02em;position:relative;}
+  .brand{
+    font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text);
+    letter-spacing:0.02em;text-decoration:none;padding:6px 4px;
+  }
   .brand .dot{color:var(--teal);}
-  .navlinks{display:flex;gap:2px;font-family:var(--mono);font-size:12.5px;}
+  .navlinks{
+    display:flex;gap:2px;font-family:var(--mono);font-size:12.5px;
+    scroll-target-group:auto;
+  }
   .navlinks a{
     padding:7px 12px;border-radius:5px;color:var(--text-dim);
-    text-decoration:none;transition:color .15s ease, background .15s ease;
-    position:relative;
+    text-decoration:none;transition:color .15s ease, background .15s ease, border-color .15s ease;
+    border-bottom:2px solid transparent;
+    min-block-size:32px;display:inline-flex;align-items:center;
   }
   .navlinks a:hover{color:var(--text);background:var(--surface-2);}
-  .navlinks a.active{color:var(--teal-bright);}
+  .navlinks a:is(:target-current, .active){
+    color:var(--teal-bright);
+    border-bottom-color:var(--teal);
+  }
   .navlinks .method{color:var(--amber);margin-right:6px;font-weight:600;}
   @media(max-width:680px){.navlinks{display:none;}}
 
   .menu-btn{
     display:none;background:none;border:1px solid var(--line);border-radius:6px;
-    width:36px;height:36px;align-items:center;justify-content:center;cursor:pointer;
+    width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;
     color:var(--text);flex-direction:column;gap:4px;
   }
   .menu-btn span{width:16px;height:1.5px;background:var(--text-dim);transition:transform .2s ease, opacity .2s ease;}
@@ -105,7 +138,7 @@
 
   .hero{
     min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    padding-top:120px;padding-bottom:70px;position:relative;
+    padding-top:110px;padding-bottom:70px;position:relative;
   }
   .hero-inner{display:grid;grid-template-columns:1.05fr 0.85fr;gap:40px;align-items:center;}
   @media(max-width:900px){.hero-inner{grid-template-columns:1fr;}}
@@ -131,19 +164,23 @@
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
 
-  .hero-sub{margin-top:22px;max-width:52ch;font-size:16.5px;color:var(--text-dim);opacity:0;animation:fadeUp .7s ease .2s forwards;}
+  .hero-sub{margin-top:22px;max-width:54ch;font-size:16.5px;color:var(--text-dim);opacity:0;animation:fadeUp .7s ease .2s forwards;}
   .hero-sub b{color:var(--text);font-weight:600;}
 
   .hero-actions{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .3s forwards;}
   .btn{
     font-family:var(--mono);font-size:13px;font-weight:600;padding:11px 18px;border-radius:7px;
     text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
-    transition:all .18s ease;position:relative;overflow:hidden;
+    transition:all .18s ease;position:relative;overflow:hidden;cursor:pointer;background:transparent;color:var(--text);
+    min-block-size:40px;
   }
   .btn-primary{background:var(--teal);color:#0B1113;border-color:var(--teal);}
   .btn-primary:hover{background:var(--teal-bright);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(95,195,176,0.5);}
   .btn-ghost{color:var(--text);}
   .btn-ghost:hover{background:var(--surface-2);border-color:var(--line-bright);transform:translateY(-1px);}
+  .btn-sm{font-size:12px;padding:7px 12px;min-block-size:32px;border-radius:6px;}
+  .btn-teal{border-color:rgba(95,195,176,0.35);color:var(--teal-bright);background:rgba(95,195,176,0.06);}
+  .btn-teal:hover{background:rgba(95,195,176,0.14);border-color:var(--teal);}
 
   .terminal{
     margin-top:44px;background:var(--surface);border:1px solid var(--line);border-radius:12px;
@@ -167,9 +204,10 @@
   .g-node-core{fill:var(--surface-3);stroke:var(--teal);stroke-width:1.4;}
   .g-edge{stroke:var(--line-bright);stroke-width:1;fill:none;}
   .g-pulse{fill:var(--teal-bright);filter:drop-shadow(0 0 4px rgba(126,219,198,0.8));}
-  .g-label{font-family:var(--mono);font-size:8.5px;fill:var(--text-faint);letter-spacing:0.02em;}
+  .g-label{font-family:var(--mono);font-size:8.5px;fill:var(--text-dim);letter-spacing:0.02em;}
 
-  section{padding:110px 0;border-top:1px solid var(--line);position:relative;}
+  section{padding:104px 0;border-top:1px solid var(--line);position:relative;scroll-margin-top:72px;}
+  section:focus{outline:none;}
   .reveal{opacity:1;transform:none;}
   .reveal.pending{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
 
@@ -179,18 +217,18 @@
   }
   .route-label .method{color:var(--bg);background:var(--teal);font-weight:700;padding:2px 7px;border-radius:4px;font-size:11px;}
   .section-title{font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-0.015em;margin-bottom:8px;}
-  .section-desc{color:var(--text-dim);max-width:60ch;margin-bottom:48px;}
+  .section-desc{color:var(--text-dim);max-width:60ch;margin-bottom:44px;}
 
   .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;}
   @media(max-width:720px){.about-grid{grid-template-columns:1fr;}}
   .about-text p{color:var(--text-dim);margin-bottom:16px;}
   .about-text b{color:var(--text);font-weight:600;}
   .stat-list{display:flex;flex-direction:column;gap:0;}
-  .stat{padding:16px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;transition:padding-left .2s ease;}
+  .stat{padding:16px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:16px;transition:padding-left .2s ease;}
   .stat:hover{padding-left:6px;border-color:var(--line-bright);}
   .stat:first-child{padding-top:0;}
   .stat-label{font-family:var(--mono);font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.05em;}
-  .stat-value{font-family:var(--mono);font-weight:600;color:var(--text);font-size:14px;}
+  .stat-value{font-family:var(--mono);font-weight:600;color:var(--text);font-size:14px;text-align:right;}
 
   .job{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);}
   .job:first-of-type{padding-top:0;}
@@ -198,7 +236,12 @@
   @media(max-width:640px){.job{grid-template-columns:1fr;gap:6px;}}
   .job-period{font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap;}
   .job-role{font-weight:700;font-size:17px;margin-bottom:2px;}
-  .job-org{color:var(--teal);font-family:var(--mono);font-size:13px;margin-bottom:14px;}
+  .job-org{color:var(--teal);font-family:var(--mono);font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .job-link{
+    color:var(--text-dim);text-decoration:none;border-bottom:1px dashed var(--line-bright);
+    font-size:12px;transition:color .15s ease, border-color .15s ease;
+  }
+  .job-link:hover{color:var(--teal-bright);border-color:var(--teal);}
   .job ul{list-style:none;}
   .job li{color:var(--text-dim);font-size:14.5px;padding-left:18px;position:relative;margin-bottom:9px;}
   .job li::before{content:'→';position:absolute;left:0;color:var(--text-faint);font-family:var(--mono);}
@@ -206,8 +249,7 @@
   .projects{display:flex;flex-direction:column;gap:20px;}
   .project{
     background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
-    transition:border-color .2s ease, transform .1s ease;
-    transform-style:preserve-3d; will-change:transform;
+    transition:border-color .2s ease, transform .12s ease;
     position:relative;
   }
   .project::after{
@@ -218,19 +260,23 @@
   .project:hover{border-color:var(--line-bright);}
   .project:hover::after{opacity:1;}
   .project-media{
-    height:200px;background:var(--surface-2);border-bottom:1px solid var(--line);
+    height:190px;background:var(--surface-2);border-bottom:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;
   }
   .project-media svg{width:100%;height:100%;}
-  .project-body{padding:26px 28px;}
-  .project-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:10px;}
+  .project-body{padding:24px 28px;}
+  .project-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
   .project-name{font-weight:700;font-size:17.5px;}
-  .project-tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+  .project-tags{display:flex;gap:6px;flex-wrap:wrap;}
   .tag{
     font-family:var(--mono);font-size:10.5px;color:var(--text-dim);background:var(--surface-2);
     border:1px solid var(--line);padding:3px 8px;border-radius:4px;white-space:nowrap;
   }
-  .project-desc{color:var(--text-dim);font-size:14.5px;max-width:65ch;}
+  .project-desc{color:var(--text-dim);font-size:14.5px;max-width:68ch;}
+  .project-actions{
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  }
 
   .skills-grid{
     display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
@@ -239,7 +285,7 @@
   @media(max-width:640px){.skills-grid{grid-template-columns:1fr;}}
   .skill-block{background:var(--surface);padding:26px 28px;transition:background .2s ease;}
   .skill-block:hover{background:var(--surface-2);}
-  .skill-block h4{font-family:var(--mono);font-size:11.5px;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;}
+  .skill-block h3{font-family:var(--mono);font-size:11.5px;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;font-weight:600;}
   .skill-tags{display:flex;flex-wrap:wrap;gap:9px 0;}
   .skill-tags span{font-size:13.5px;color:var(--text-dim);padding:5px 0;transition:color .15s ease;cursor:default;}
   .skill-tags span:hover{color:var(--teal-bright);}
@@ -258,19 +304,107 @@
   .contact-row:hover .contact-arrow{transform:translate(3px,-3px);color:var(--teal-bright);}
   .copy-hint{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
 
-  footer{
+  footer.site-footer{
     padding:44px 0 56px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;
     color:var(--text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* Native Top-Layer Architecture Dialog */
+  dialog.arch-dialog{
+    margin:auto;
+    max-width:680px;
+    width:calc(100% - 32px);
+    max-height:calc(100dvh - 48px);
+    background:var(--surface);
+    color:var(--text);
+    border:1px solid var(--line-bright);
+    border-radius:14px;
+    padding:0;
+    box-shadow:0 32px 90px -20px rgba(0,0,0,0.85);
+    opacity:0;
+    transition-property:opacity, transform, display, overlay;
+    transition-duration:0.22s;
+    transition-timing-function:ease-out;
+    transition-behavior:allow-discrete;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    dialog.arch-dialog{transform:scale(0.96);}
+  }
+  dialog.arch-dialog:modal{
+    overscroll-behavior:contain;
+  }
+  dialog.arch-dialog[open]:where(:not([data-closing])){
+    opacity:1;
+    @starting-style{opacity:0;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    dialog.arch-dialog[open]:where(:not([data-closing])){
+      transform:scale(1);
+      @starting-style{transform:scale(0.96);}
+    }
+  }
+  dialog.arch-dialog::backdrop{
+    background-color:rgba(7,10,12,0);
+    backdrop-filter:blur(4px);
+    overflow:hidden;
+    overscroll-behavior:contain;
+    transition-property:background-color, display, overlay;
+    transition-duration:0.22s;
+    transition-timing-function:ease-out;
+    transition-behavior:allow-discrete;
+  }
+  dialog.arch-dialog[open]:where(:not([data-closing]))::backdrop{
+    background-color:rgba(7,10,12,0.74);
+    @starting-style{background-color:rgba(7,10,12,0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    dialog.arch-dialog, dialog.arch-dialog::backdrop{transition-duration:0.1s;}
+  }
+
+  .arch-head{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+    padding:22px 26px;border-bottom:1px solid var(--line);background:var(--surface-2);
+  }
+  .arch-kicker{
+    font-family:var(--mono);font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;
+  }
+  .arch-title{font-size:19px;font-weight:800;line-height:1.25;}
+  .arch-close{
+    background:var(--surface-3);color:var(--text-dim);border:1px solid var(--line-bright);
+    border-radius:7px;min-inline-size:36px;min-block-size:36px;padding:0 10px;
+    font-family:var(--mono);font-size:12px;cursor:pointer;flex-shrink:0;
+  }
+  .arch-close:hover{color:var(--text);border-color:var(--teal);}
+  .arch-body{padding:24px 26px;display:flex;flex-direction:column;gap:20px;}
+  .arch-block h4{
+    font-family:var(--mono);font-size:11.5px;color:var(--amber);text-transform:uppercase;
+    letter-spacing:0.07em;margin-bottom:10px;
+  }
+  .arch-flow{
+    font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--teal-bright);
+    background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;
+    overflow-x:auto;white-space:pre-wrap;
+  }
+  .arch-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .arch-list li{
+    color:var(--text-dim);font-size:14px;padding-left:18px;position:relative;
+  }
+  .arch-list li::before{content:'→';position:absolute;left:0;color:var(--teal);font-family:var(--mono);}
+  .arch-list b{color:var(--text);font-weight:600;}
+  .arch-foot{
+    padding:16px 26px;border-top:1px solid var(--line);background:var(--surface-2);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   }
 </style>
 </head>
 <body>
 
-<div class="progress" id="progress"></div>
+<a href="#main-content" class="skip-link visually-hidden">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header>
-  <nav class="wrap">
-    <div class="brand">elguindy<span class="dot">.</span>dev</div>
+  <nav class="wrap" aria-label="Primary">
+    <a href="#top" class="brand">elguindy<span class="dot">.</span>dev</a>
     <div class="navlinks" id="navlinks">
       <a href="#about" data-sec="about"><span class="method">GET</span>/about</a>
       <a href="#experience" data-sec="experience"><span class="method">GET</span>/experience</a>
@@ -278,7 +412,7 @@
       <a href="#skills" data-sec="skills"><span class="method">GET</span>/skills</a>
       <a href="#contact" data-sec="contact"><span class="method">POST</span>/contact</a>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -291,21 +425,22 @@
   </div>
 </header>
 
-<main>
-  <section class="hero wrap" style="border-top:none;">
+<main id="main-content" tabindex="-1">
+  <section id="top" class="hero wrap" style="border-top:none;">
     <div class="hero-inner">
       <div>
         <div class="eyebrow">status: open to opportunities</div>
-        <h1>Backend & AI engineer, <span class="grad">building systems that reason.</span></h1>
+        <h1>Backend &amp; AI engineer, <span class="grad">building systems that reason.</span></h1>
         <p class="hero-sub">
           I'm <b>Mohamed Elguindy</b> — a Computer Engineering student in Cairo building
-          <b>agentic LLM pipelines</b> and scalable, event-driven backends with Python, Node.js, and Java.
-          Recently completed Software Engineering & AI internships at CyShield and Nokia.
+          <b>scalable backend microservices</b> and <b>production compound AI systems</b> with Python (FastAPI), Java (Spring Boot), and Node.js.
+          Completed internships at CyShield, Elsewedy Electric, Ejada, Nokia, and Suez Canal Bank.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View projects</a>
-          <a class="btn btn-ghost" href="mailto:mohamedwelguindy@gmail.com">Get in touch</a>
-          <a class="btn btn-ghost" href="https://github.com/Mohamed-Elguindy" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="./Mohamed_Elguindy_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume PDF ↗</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="https://github.com/Mohamed-Elguindy" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </div>
 
         <div class="terminal">
@@ -317,7 +452,7 @@
         </div>
       </div>
 
-      <div class="graph-wrap">
+      <div class="graph-wrap" aria-hidden="true">
         <svg viewBox="0 0 300 300" fill="none">
           <path class="g-edge" d="M150,150 L80,80"/>
           <path class="g-edge" d="M150,150 L230,70"/>
@@ -355,27 +490,27 @@
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" tabindex="-1">
     <div class="wrap reveal">
       <div class="route-label"><span class="method">GET</span> /about</div>
       <h2 class="section-title">About</h2>
       <p class="section-desc">The short version.</p>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm a Computer Engineering student at the <b>Arab Academy for Science and Technology</b>, graduating 2027, with a focus on backend systems and agentic AI. My work spans from architecting <b>robust backends that orchestrate multi-agent LLM pipelines</b> to engineering <b>highly scalable, event-driven platforms</b> with Node.js, Redis, and message queues.</p>
-          <p>Whether I'm building a GPT-style transformer from scratch, a compound AI fitness coach, or a robust webhook delivery platform with strict rate-limiting, I care about systems that are <b>secure, containerized, and built to scale</b> — not just notebooks.</p>
+          <p>I'm a Computer Engineering student at the <b>Arab Academy for Science and Technology</b> (2023–2028) focused on backend systems and production AI. My work spans from engineering <b>transactional PostgreSQL/Redis backends</b> and <b>event-driven microservices</b> to building <b>Hybrid RAG and multi-agent LLM pipelines</b>.</p>
+          <p>Whether I'm shipping a compound AI fitness coach with automated CI/CD eval gates, a webhook delivery engine with HMAC signing and BullMQ retries, or a GPT transformer from scratch in PyTorch, I care about systems that are <b>observable, deterministic where it counts, and built to scale</b>.</p>
         </div>
         <div class="stat-list">
           <div class="stat"><span class="stat-label">Location</span><span class="stat-value">Cairo, Egypt</span></div>
-          <div class="stat"><span class="stat-label">Education</span><span class="stat-value">AAST · GPA 3.74</span></div>
-          <div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Backend + Agentic AI</span></div>
-          <div class="stat"><span class="stat-label">Core stack</span><span class="stat-value">Python · FastAPI · Node.js · Java</span></div>
+          <div class="stat"><span class="stat-label">Education</span><span class="stat-value">AAST · 2028 · GPA 3.74</span></div>
+          <div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Backend + Compound AI</span></div>
+          <div class="stat"><span class="stat-label">Core stack</span><span class="stat-value">Python · Java · Node.js · SQL</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" tabindex="-1">
     <div class="wrap reveal">
       <div class="route-label"><span class="method">GET</span> /experience</div>
       <h2 class="section-title">Experience</h2>
@@ -385,9 +520,12 @@
         <div class="job-period">08/2026 – 09/2026</div>
         <div>
           <div class="job-role">Software Engineering Intern</div>
-          <div class="job-org">CyShield</div>
+          <div class="job-org">
+            <span>CyShield — Cairo, Egypt (Hybrid)</span>
+            <a class="job-link" href="https://github.com/ShadowOfDeath25/hooks" target="_blank" rel="noopener noreferrer" aria-label="View CyShield webhook platform GitHub repository">GitHub Repo ↗</a>
+          </div>
           <ul>
-            <li>Co-developed a highly scalable, event-driven <a href="https://github.com/ShadowOfDeath25/hooks" target="_blank" style="color:var(--teal);text-decoration:none;">webhook delivery platform</a> from scratch, driving key system design decisions for reliability and fault tolerance.</li>
+            <li>Co-developed a highly scalable, event-driven webhook delivery platform from scratch, driving key system design decisions for reliability and fault tolerance.</li>
             <li>Built core services with Node.js, Fastify, and Docker, integrating Redis and BullMQ for asynchronous job queuing.</li>
             <li>Engineered robust rate-limiting, HMAC payload signing, and PostgreSQL/Drizzle data persistence.</li>
             <li>Worked in an Agile/Scrum environment, actively participating in sprint planning and rigorous PR reviews.</li>
@@ -450,53 +588,55 @@
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" tabindex="-1">
     <div class="wrap reveal">
       <div class="route-label"><span class="method">GET</span> /projects</div>
       <h2 class="section-title">Projects</h2>
-      <p class="section-desc">Things I've built end to end.</p>
+      <p class="section-desc">End-to-end systems — inspect source repos or open any architecture breakdown.</p>
       <div class="projects">
-        
-        <div class="project" data-tilt>
-          <div class="project-media">
+
+        <article class="project" data-tilt>
+          <div class="project-media" aria-hidden="true">
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
               <defs>
-                <radialGradient id="glow4" cx="50%" cy="50%" r="60%">
-                  <stop offset="0%" stop-color="#7EDBC6" stop-opacity="0.16"/>
-                  <stop offset="100%" stop-color="#7EDBC6" stop-opacity="0"/>
+                <radialGradient id="glow2" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#E8A33D" stop-opacity="0.16"/>
+                  <stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
                 </radialGradient>
               </defs>
-              <rect width="400" height="200" fill="url(#glow4)"/>
-              <g font-family="IBM Plex Mono" font-size="9" fill="#586870">
-                <rect x="100" y="60" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
-                <text x="125" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">Sender</text>
-                
-                <rect x="250" y="60" width="60" height="20" fill="none" stroke="#33424B" rx="4"/>
-                <text x="280" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">BullMQ</text>
-                
-                <rect x="175" y="130" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
-                <text x="200" y="144" text-anchor="middle" fill="#93A3AB" font-size="8">Webhook</text>
-                
-                <path d="M150,70 L250,70" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
-                <path d="M280,80 L200,130" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
-                
-                <circle r="2.5" fill="#5FC3B0"><animateMotion dur="2s" repeatCount="indefinite" path="M150,70 L250,70"/></circle>
-                <circle r="2.5" fill="#E8A33D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M280,80 L200,130"/></circle>
+              <rect width="400" height="200" fill="url(#glow2)"/>
+              <g transform="translate(120,100)">
+                <circle r="55" fill="none" stroke="#33424B" stroke-width="10" stroke-dasharray="155.5 345.6" stroke-dashoffset="0" transform="rotate(-90)"/>
+                <circle r="55" fill="none" stroke="#5FC3B0" stroke-width="10" stroke-dasharray="120.9 345.6" stroke-dashoffset="-155.5" transform="rotate(-90)"/>
+                <circle r="55" fill="none" stroke="#E8A33D" stroke-width="10" stroke-dasharray="69.1 345.6" stroke-dashoffset="-276.4" transform="rotate(-90)"/>
+                <text text-anchor="middle" y="-4" font-family="IBM Plex Mono" font-size="16" fill="#EDF2F4" font-weight="600">2,340</text>
+                <text text-anchor="middle" y="14" font-family="IBM Plex Mono" font-size="8" fill="#6E8089">KCAL TARGET</text>
               </g>
-              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#586870" letter-spacing="1">EVENT-DRIVEN WEBHOOK DELIVERY</text>
+              <g font-family="IBM Plex Mono" font-size="9" fill="#93A3AB">
+                <rect x="250" y="55" width="8" height="8" fill="#33424B"/><text x="264" y="63">Carbs 45%</text>
+                <rect x="250" y="75" width="8" height="8" fill="#5FC3B0"/><text x="264" y="83">Protein 35%</text>
+                <rect x="250" y="95" width="8" height="8" fill="#E8A33D"/><text x="264" y="103">Fat 20%</text>
+              </g>
+              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6E8089" letter-spacing="1">HYBRID RAG × DETERMINISTIC GUARDRAILS</text>
             </svg>
           </div>
           <div class="project-body">
             <div class="project-head">
-              <div class="project-name">Webhook Delivery Platform</div>
-              <div class="project-tags"><span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">Redis</span><span class="tag">BullMQ</span></div>
+              <h3 class="project-name">AI Fitness Coach — Production Compound AI System</h3>
+              <div class="project-tags">
+                <span class="tag">FastAPI</span><span class="tag">LlamaIndex</span><span class="tag">Hybrid RAG</span><span class="tag">PostgreSQL</span><span class="tag">CI/CD</span>
+              </div>
             </div>
-            <div class="project-desc">A highly scalable, event-driven webhook delivery service. Engineered robust rate-limiting and retry mechanisms, managed reliable job queuing for asynchronous tasks with Redis and BullMQ, and secured data payloads using HMAC-based webhook signing. Data persistence handled via PostgreSQL and Drizzle ORM.</div>
+            <p class="project-desc">Built a multi-domain Hybrid RAG pipeline combining dense embeddings, BM25 keyword search, and Cross-Encoder reranking via LlamaIndex. Paired deterministic Python TDEE/macro guardrails with Instructor + Pydantic, served over async FastAPI SSE streams to Next.js, and gated PRs with automated LLM-as-a-Judge CI/CD evaluations.</p>
+            <footer class="project-actions">
+              <a class="btn btn-sm btn-ghost" href="https://github.com/Mohamed-Elguindy/Fitness-App" target="_blank" rel="noopener noreferrer" aria-label="View AI Fitness Coach GitHub repository">GitHub ↗</a>
+              <button type="button" class="btn btn-sm btn-teal" data-arch="fitness" aria-label="Inspect AI Fitness Coach architecture">Architecture ↗</button>
+            </footer>
           </div>
-        </div>
+        </article>
 
-        <div class="project" data-tilt>
-          <div class="project-media">
+        <article class="project" data-tilt>
+          <div class="project-media" aria-hidden="true">
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <radialGradient id="glow1" cx="50%" cy="50%" r="60%">
@@ -516,54 +656,66 @@
               <path d="M80,60 L180,140 L300,55 L340,150" fill="none" stroke="#33424B" stroke-width="1" stroke-dasharray="3 5"/>
               <path d="M80,60 L300,55" fill="none" stroke="#33424B" stroke-width="1" stroke-dasharray="3 5"/>
               <circle r="2.4" fill="#7EDBC6"><animateMotion dur="3.5s" repeatCount="indefinite" path="M80,60 L180,140 L300,55 L340,150"/></circle>
-              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#586870" letter-spacing="1">RISK EVENT ROUTING GRAPH</text>
+              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6E8089" letter-spacing="1">RISK EVENT ROUTING GRAPH</text>
             </svg>
           </div>
           <div class="project-body">
             <div class="project-head">
-              <div class="project-name">Autonomous Supply Chain & Logistics Triage</div>
-              <div class="project-tags"><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">PostgreSQL</span></div>
+              <h3 class="project-name">Autonomous Supply Chain &amp; Logistics Triage</h3>
+              <div class="project-tags">
+                <span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">PostgreSQL</span><span class="tag">Langfuse</span>
+              </div>
             </div>
-            <div class="project-desc">Enterprise-level microservices backend using a LangGraph multi-agent system that monitors global risk events and autonomously generates shipping contingency plans. Async FastAPI endpoints serve the agentic routing logic to a React/Node.js frontend over WebSockets, containerized end to end with Docker Compose, and observed via Langfuse for latency and token tracking.</div>
+            <p class="project-desc">Enterprise microservices backend using a LangGraph multi-agent system that monitors global risk events and autonomously generates shipping contingency plans. Async FastAPI endpoints stream routing state over WebSockets to a React/Node.js UI, containerized with Docker Compose and observed via Langfuse.</p>
+            <footer class="project-actions">
+              <a class="btn btn-sm btn-ghost" href="https://github.com/Mohamed-Elguindy/Autonomous-Logistics-Triage" target="_blank" rel="noopener noreferrer" aria-label="View Autonomous Supply Chain and Logistics Triage GitHub repository">GitHub ↗</a>
+              <button type="button" class="btn btn-sm btn-teal" data-arch="logistics" aria-label="Inspect Autonomous Supply Chain and Logistics Triage architecture">Architecture ↗</button>
+            </footer>
           </div>
-        </div>
+        </article>
 
-        <div class="project" data-tilt>
-          <div class="project-media">
+        <article class="project" data-tilt>
+          <div class="project-media" aria-hidden="true">
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
               <defs>
-                <radialGradient id="glow2" cx="50%" cy="50%" r="60%">
-                  <stop offset="0%" stop-color="#E8A33D" stop-opacity="0.16"/>
-                  <stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
+                <radialGradient id="glow4" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#7EDBC6" stop-opacity="0.16"/>
+                  <stop offset="100%" stop-color="#7EDBC6" stop-opacity="0"/>
                 </radialGradient>
               </defs>
-              <rect width="400" height="200" fill="url(#glow2)"/>
-              <g transform="translate(120,100)">
-                <circle r="55" fill="none" stroke="#33424B" stroke-width="10" stroke-dasharray="155.5 345.6" stroke-dashoffset="0" transform="rotate(-90)"/>
-                <circle r="55" fill="none" stroke="#5FC3B0" stroke-width="10" stroke-dasharray="120.9 345.6" stroke-dashoffset="-155.5" transform="rotate(-90)"/>
-                <circle r="55" fill="none" stroke="#E8A33D" stroke-width="10" stroke-dasharray="69.1 345.6" stroke-dashoffset="-276.4" transform="rotate(-90)"/>
-                <text text-anchor="middle" y="-4" font-family="IBM Plex Mono" font-size="16" fill="#EDF2F4" font-weight="600">2,340</text>
-                <text text-anchor="middle" y="14" font-family="IBM Plex Mono" font-size="8" fill="#586870">KCAL TARGET</text>
+              <rect width="400" height="200" fill="url(#glow4)"/>
+              <g font-family="IBM Plex Mono" font-size="9" fill="#6E8089">
+                <rect x="100" y="60" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="125" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">Sender</text>
+                <rect x="250" y="60" width="60" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="280" y="74" text-anchor="middle" fill="#93A3AB" font-size="8">BullMQ</text>
+                <rect x="175" y="130" width="50" height="20" fill="none" stroke="#33424B" rx="4"/>
+                <text x="200" y="144" text-anchor="middle" fill="#93A3AB" font-size="8">Webhook</text>
+                <path d="M150,70 L250,70" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
+                <path d="M280,80 L200,130" fill="none" stroke="#33424B" stroke-dasharray="2 3"/>
+                <circle r="2.5" fill="#5FC3B0"><animateMotion dur="2s" repeatCount="indefinite" path="M150,70 L250,70"/></circle>
+                <circle r="2.5" fill="#E8A33D"><animateMotion dur="2.5s" repeatCount="indefinite" path="M280,80 L200,130"/></circle>
               </g>
-              <g font-family="IBM Plex Mono" font-size="9" fill="#93A3AB">
-                <rect x="250" y="55" width="8" height="8" fill="#33424B"/><text x="264" y="63">Carbs 45%</text>
-                <rect x="250" y="75" width="8" height="8" fill="#5FC3B0"/><text x="264" y="83">Protein 35%</text>
-                <rect x="250" y="95" width="8" height="8" fill="#E8A33D"/><text x="264" y="103">Fat 20%</text>
-              </g>
-              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#586870" letter-spacing="1">MACRO ENGINE OUTPUT</text>
+              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6E8089" letter-spacing="1">EVENT-DRIVEN WEBHOOK DELIVERY</text>
             </svg>
           </div>
           <div class="project-body">
             <div class="project-head">
-              <div class="project-name">AI Fitness Coach — Compound AI System</div>
-              <div class="project-tags"><span class="tag">LlamaIndex</span><span class="tag">FastAPI</span><span class="tag">Groq</span></div>
+              <h3 class="project-name">Webhook Delivery Platform</h3>
+              <div class="project-tags">
+                <span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">Redis</span><span class="tag">BullMQ</span><span class="tag">PostgreSQL</span>
+              </div>
             </div>
-            <div class="project-desc">A compound AI backend combining Agentic RAG, LLM generation, and deterministic logic across three FastAPI + Pydantic endpoints. A LlamaIndex RouterQueryEngine dynamically routes queries via LLMSingleSelector, a Python-computed TDEE/macro engine feeds structured Groq prompts for personalized nutrition plans, and a training generator maps availability and goals to weekly splits with strict JSON validation.</div>
+            <p class="project-desc">Event-driven webhook delivery engine using Fastify, PostgreSQL/Drizzle, and Redis/BullMQ. Persists events and per-endpoint deliveries transactionally, enforces distributed per-endpoint rate limits via Bottleneck without burning retries, signs payloads with HMAC-SHA256 using AES-256-GCM encrypted secrets, and auto-disables failing endpoints after jittered exponential backoff.</p>
+            <footer class="project-actions">
+              <a class="btn btn-sm btn-ghost" href="https://github.com/ShadowOfDeath25/hooks" target="_blank" rel="noopener noreferrer" aria-label="View Webhook Delivery Platform GitHub repository">GitHub ↗</a>
+              <button type="button" class="btn btn-sm btn-teal" data-arch="webhook" aria-label="Inspect Webhook Delivery Platform architecture">Architecture ↗</button>
+            </footer>
           </div>
-        </div>
+        </article>
 
-        <div class="project" data-tilt>
-          <div class="project-media">
+        <article class="project" data-tilt>
+          <div class="project-media" aria-hidden="true">
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <radialGradient id="glow3" cx="50%" cy="50%" r="60%">
@@ -573,7 +725,7 @@
               </defs>
               <rect width="400" height="200" fill="url(#glow3)"/>
               <g id="heatmap"></g>
-              <g font-family="IBM Plex Mono" font-size="9" fill="#586870">
+              <g font-family="IBM Plex Mono" font-size="9" fill="#6E8089">
                 <rect x="270" y="40" width="70" height="18" fill="none" stroke="#33424B"/>
                 <text x="305" y="52" text-anchor="middle" fill="#93A3AB" font-size="8">Self-Attn</text>
                 <rect x="270" y="66" width="70" height="18" fill="none" stroke="#33424B"/>
@@ -582,41 +734,58 @@
                 <text x="305" y="104" text-anchor="middle" fill="#93A3AB" font-size="8">Feed Fwd</text>
                 <path d="M305,58 L305,66 M305,84 L305,92" stroke="#33424B"/>
               </g>
-              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#586870" letter-spacing="1">ATTENTION WEIGHTS × BLOCK STACK</text>
+              <text x="200" y="185" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#6E8089" letter-spacing="1">ATTENTION WEIGHTS × BLOCK STACK</text>
             </svg>
           </div>
           <div class="project-body">
             <div class="project-head">
-              <div class="project-name">GPT from Scratch</div>
-              <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span></div>
+              <h3 class="project-name">GPT from Scratch</h3>
+              <div class="project-tags">
+                <span class="tag">PyTorch</span><span class="tag">Transformers</span>
+              </div>
             </div>
-            <div class="project-desc">A GPT-style generative pre-trained transformer built from the ground up — multi-head self-attention, layer normalization, and feed-forward blocks — paired with a custom tokenizer and training loop.</div>
+            <p class="project-desc">A GPT-style decoder-only transformer implemented from scratch in PyTorch — multi-head causal self-attention, pre-layer normalization, residual connections, and feed-forward blocks — paired with a custom tokenizer and training loop.</p>
+            <footer class="project-actions">
+              <button type="button" class="btn btn-sm btn-teal" data-arch="gpt" aria-label="Inspect GPT from Scratch architecture">Architecture ↗</button>
+            </footer>
           </div>
-        </div>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <section id="skills">
+  <section id="skills" tabindex="-1">
     <div class="wrap reveal">
       <div class="route-label"><span class="method">GET</span> /skills</div>
       <h2 class="section-title">Skills</h2>
       <p class="section-desc">What I build with.</p>
       <div class="skills-grid">
-        <div class="skill-block"><h4>Core Languages</h4><div class="skill-tags"><span>Java</span><span>Python</span><span>C++</span><span>SQL</span></div></div>
-        <div class="skill-block"><h4>AI & Deep Learning</h4><div class="skill-tags"><span>LangGraph</span><span>DSPy</span><span>LlamaIndex</span><span>Agentic RAG</span><span>PyTorch</span><span>Prompt Engineering</span><span>Transformers</span></div></div>
-        <div class="skill-block"><h4>Backend & DevOps</h4><div class="skill-tags"><span>FastAPI</span><span>Node.js</span><span>Fastify</span><span>REST APIs</span><span>Docker</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span><span>Drizzle ORM</span></div></div>
-        <div class="skill-block"><h4>Data & Tools</h4><div class="skill-tags"><span>Git/GitHub</span><span>Postman</span><span>Langfuse</span><span>Groq</span><span>OpenAI</span></div></div>
+        <div class="skill-block">
+          <h3>Core Languages</h3>
+          <div class="skill-tags"><span>Java</span><span>Python</span><span>C++</span><span>SQL</span></div>
+        </div>
+        <div class="skill-block">
+          <h3>Backend &amp; DevOps</h3>
+          <div class="skill-tags"><span>FastAPI</span><span>Spring Boot</span><span>Node.js</span><span>Fastify</span><span>REST APIs</span><span>Docker</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span><span>Drizzle ORM</span><span>GitHub Actions CI/CD</span></div>
+        </div>
+        <div class="skill-block">
+          <h3>AI &amp; Deep Learning</h3>
+          <div class="skill-tags"><span>LangGraph</span><span>DSPy</span><span>LlamaIndex</span><span>Hybrid RAG (BM25 + Cross-Encoders)</span><span>Instructor</span><span>PyTorch</span><span>Transformers</span></div>
+        </div>
+        <div class="skill-block">
+          <h3>Data &amp; Tools</h3>
+          <div class="skill-tags"><span>Git/GitHub</span><span>Postman</span><span>Langfuse</span><span>LLM-as-a-Judge Evals</span><span>Groq</span><span>OpenAI</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" tabindex="-1">
     <div class="wrap reveal">
       <div class="route-label"><span class="method">POST</span> /contact</div>
       <h2 class="section-title">Get in touch</h2>
-      <p class="section-desc">Open to backend & AI engineering roles, internships, and collaborations.</p>
+      <p class="section-desc">Open to backend &amp; AI engineering roles, internships, and collaborations.</p>
       <div class="contact">
         <a class="contact-row" href="mailto:mohamedwelguindy@gmail.com" id="emailRow">
           <span><span class="contact-label">EMAIL</span><br><span class="contact-value">mohamedwelguindy@gmail.com</span></span>
@@ -626,12 +795,16 @@
           <span><span class="contact-label">PHONE</span><br><span class="contact-value">+20 106 589 5088</span></span>
           <span class="contact-arrow">↗</span>
         </a>
-        <a class="contact-row" href="https://linkedin.com/in/mohamedelguindy14" target="_blank" rel="noopener">
+        <a class="contact-row" href="https://linkedin.com/in/mohamedelguindy14" target="_blank" rel="noopener noreferrer">
           <span><span class="contact-label">LINKEDIN</span><br><span class="contact-value">linkedin.com/in/mohamedelguindy14</span></span>
           <span class="contact-arrow">↗</span>
         </a>
-        <a class="contact-row" href="https://github.com/Mohamed-Elguindy" target="_blank" rel="noopener">
+        <a class="contact-row" href="https://github.com/Mohamed-Elguindy" target="_blank" rel="noopener noreferrer">
           <span><span class="contact-label">GITHUB</span><br><span class="contact-value">github.com/Mohamed-Elguindy</span></span>
+          <span class="contact-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="./Mohamed_Elguindy_Resume.pdf" target="_blank" rel="noopener noreferrer">
+          <span><span class="contact-label">RESUME</span><br><span class="contact-value">Mohamed_Elguindy_Resume.pdf</span></span>
           <span class="contact-arrow">↗</span>
         </a>
       </div>
@@ -639,67 +812,123 @@
   </section>
 </main>
 
-<footer class="wrap">
+<footer class="wrap site-footer">
   <span>© 2026 Mohamed Elguindy</span>
   <span>Cairo, Egypt · 200 OK</span>
 </footer>
 
+<dialog id="archDialog" class="arch-dialog" closedby="any" aria-labelledby="archTitle">
+  <div class="arch-head">
+    <div>
+      <div class="arch-kicker" id="archKicker">System Architecture</div>
+      <h2 class="arch-title" id="archTitle">Project Architecture</h2>
+    </div>
+    <button type="button" class="arch-close" id="archCloseBtn" aria-label="Close architecture dialog" autofocus>Esc ✕</button>
+  </div>
+  <div class="arch-body">
+    <div class="arch-block">
+      <h4>Request &amp; Data Flow</h4>
+      <pre class="arch-flow" id="archFlow"></pre>
+    </div>
+    <div class="arch-block">
+      <h4>Key Engineering Decisions &amp; Tradeoffs</h4>
+      <ul class="arch-list" id="archNotes"></ul>
+    </div>
+  </div>
+  <div class="arch-foot">
+    <a id="archRepoLink" class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener noreferrer">Open GitHub Repo ↗</a>
+    <form method="dialog" id="archFootForm">
+      <button type="submit" class="btn btn-sm btn-ghost">Close</button>
+    </form>
+  </div>
+</dialog>
+
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   const progress = document.getElementById('progress');
   function updateProgress(){
     const h = document.documentElement;
-    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    const denom = h.scrollHeight - h.clientHeight;
+    const pct = denom > 0 ? (h.scrollTop / denom) * 100 : 0;
     progress.style.width = pct + '%';
   }
   document.addEventListener('scroll', updateProgress, {passive:true});
 
-  const navlinks = document.querySelectorAll('#navlinks a');
-  const sections = [...navlinks].map(a => document.getElementById(a.dataset.sec)).filter(Boolean);
-  function updateSpy(){
-    let current = null;
-    sections.forEach(sec => {
-      const r = sec.getBoundingClientRect();
-      if (r.top <= 120 && r.bottom > 120) current = sec.id;
-    });
-    navlinks.forEach(a => a.classList.toggle('active', a.dataset.sec === current));
-  }
-  document.addEventListener('scroll', updateSpy, {passive:true});
+  // Scrollspy: native scroll-target-group + :target-current with IntersectionObserver fallback
+  const navlinks = [...document.querySelectorAll('#navlinks a')];
+  const sections = navlinks.map(a => document.getElementById(a.dataset.sec)).filter(Boolean);
+  const supportsScrollTargetGroup = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('scroll-target-group', 'auto');
 
+  if (supportsScrollTargetGroup){
+    const syncAriaCurrent = () => {
+      const currentLink = document.querySelector('#navlinks a:target-current');
+      navlinks.forEach(link => {
+        link.setAttribute('aria-current', link === currentLink ? 'true' : 'false');
+      });
+    };
+    syncAriaCurrent();
+    document.addEventListener('scrollend', syncAriaCurrent, {passive:true});
+  } else if ('IntersectionObserver' in window){
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          const id = entry.target.id;
+          navlinks.forEach(a => {
+            const isActive = a.dataset.sec === id;
+            a.classList.toggle('active', isActive);
+            a.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    sections.forEach(sec => spyObserver.observe(sec));
+  }
+
+  // Reveal on scroll
   if (!reduced && 'IntersectionObserver' in window){
     const revealEls = document.querySelectorAll('.reveal');
     revealEls.forEach(el => el.classList.add('pending'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.remove('pending'); });
-    }, {threshold:0.12});
+    }, {threshold:0.1});
     revealEls.forEach(el => io.observe(el));
-    // safety net: never leave content hidden if something goes wrong
-    setTimeout(() => revealEls.forEach(el => el.classList.remove('pending')), 4000);
+    setTimeout(() => revealEls.forEach(el => el.classList.remove('pending')), 3500);
   }
 
-  if (!reduced){
+  // Subtle card tilt on fine pointer devices only, throttled with rAF
+  if (!reduced && finePointer){
     document.querySelectorAll('[data-tilt]').forEach(card => {
+      let rafId = null;
       card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = e.clientX - r.left, y = e.clientY - r.top;
-        card.style.setProperty('--mx', x + 'px');
-        card.style.setProperty('--my', y + 'px');
-        const rx = ((y / r.height) - 0.5) * -4;
-        const ry = ((x / r.width) - 0.5) * 4;
-        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const r = card.getBoundingClientRect();
+          const x = e.clientX - r.left, y = e.clientY - r.top;
+          card.style.setProperty('--mx', x + 'px');
+          card.style.setProperty('--my', y + 'px');
+          const rx = ((y / r.height) - 0.5) * -3;
+          const ry = ((x / r.width) - 0.5) * 3;
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+        });
       });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      card.addEventListener('mouseleave', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        card.style.transform = '';
+      });
     });
   }
 
+  // Deterministic attention heatmap SVG
   (function(){
     const g = document.getElementById('heatmap');
     const cols = 8, rows = 8, size = 15, startX = 30, startY = 30;
     for (let r = 0; r < rows; r++){
       for (let c = 0; c < cols; c++){
         const dist = Math.abs(r - c);
-        const alpha = Math.max(0.04, 1 - dist * 0.16) * (0.5 + Math.random()*0.5);
+        const seed = ((r * 7 + c * 13) % 10) / 10;
+        const alpha = Math.max(0.05, 1 - dist * 0.16) * (0.55 + seed * 0.45);
         const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
         rect.setAttribute('x', startX + c*size);
         rect.setAttribute('y', startY + r*size);
@@ -711,6 +940,7 @@
     }
   })();
 
+  // Copy email convenience
   const emailRow = document.getElementById('emailRow');
   emailRow.addEventListener('click', function(e){
     e.preventDefault();
@@ -722,17 +952,189 @@
     }).catch(() => { window.location.href = 'mailto:mohamedwelguindy@gmail.com'; });
   });
 
+  // Architecture Modal Data & Native <dialog> Handling
+  const ARCH_DATA = {
+    fitness: {
+      kicker: "Hybrid RAG · Deterministic Guardrails · CI/CD Evals",
+      title: "AI Fitness Coach — Architecture",
+      repo: "https://github.com/Mohamed-Elguindy/Fitness-App",
+      flow:
+`Next.js Client ──(JWT + SSE)──▶ FastAPI Backend
+  ├──▶ RouterQueryEngine (Domain Selection)
+  │     ├── Dense Vectors (BAAI/bge-small) ──┐
+  │     └── Sparse BM25 Inverted Index ──────┴─▶ RRF Fusion ─▶ Cross-Encoder Rerank
+  ├──▶ Deterministic Python Engine (TDEE / Macros) ─▶ Instructor + Pydantic JSON
+  ├──▶ PostgreSQL (Composite Index: user_id, created_at DESC)
+  └──▶ GitHub Actions CI/CD ─▶ LLM-as-a-Judge (Faithfulness & Relevance Gate)`,
+      notes: [
+        { lead: "Why Hybrid RAG + Cross-Encoder:", body: "Dense bi-encoders capture semantics while BM25 catches exact domain terms (supplement names, macros). Reranking top candidates with a Cross-Encoder runs full query-document attention for precision without scanning the whole corpus." },
+        { lead: "Why deterministic Python math:", body: "LLMs hallucinate arithmetic; TDEE and macro targets are computed in Python and injected as strict bounds into Instructor/Pydantic schemas." },
+        { lead: "Composite B-Tree indexing:", body: "User diet/program history queries filter by user_id and sort by created_at DESC, matching a composite (user_id, created_at DESC) B-Tree index." }
+      ]
+    },
+    logistics: {
+      kicker: "Multi-Agent Orchestration · WebSockets · Observability",
+      title: "Autonomous Supply Chain & Logistics Triage",
+      repo: "https://github.com/Mohamed-Elguindy/Autonomous-Logistics-Triage",
+      flow:
+`Global Risk Event Feed ──▶ FastAPI Ingestion
+  └──▶ LangGraph Stateful Agent Graph
+        ├── Risk Classification Node
+        ├── Route Impact & Supplier Check
+        └── Contingency Plan Generator ──▶ Structured Plan
+  ├──▶ WebSocket Stream ──▶ React / Node.js Dashboard
+  ├──▶ PostgreSQL Persistence
+  └──▶ Langfuse Tracing (Latency, Tokens, Schema Adherence)`,
+      notes: [
+        { lead: "Why LangGraph over linear chains:", body: "Supply-chain triage needs conditional branching, stateful retries, and multi-step tool verification rather than a single prompt chain." },
+        { lead: "Real-time visibility:", body: "Async FastAPI WebSockets stream intermediate agent state transitions to the UI instead of blocking on long HTTP requests." },
+        { lead: "Observability via Langfuse:", body: "Every node tracks token usage, per-step latency, and JSON compliance across containerized Docker Compose services." }
+      ]
+    },
+    webhook: {
+      kicker: "Fastify · BullMQ + Bottleneck · AES-256-GCM + HMAC",
+      title: "Webhook Delivery Platform",
+      repo: "https://github.com/ShadowOfDeath25/hooks",
+      flow:
+`POST /events ──▶ Fastify (Auth + 1MB/Timestamp Check)
+  └──▶ PostgreSQL Tx: Insert event + fan-out active deliveries
+  └──▶ BullMQ deliveryQueue.addBulk() (compensating rollback on queue fail)
+        └──▶ Worker ──▶ Bottleneck + Redis Per-Endpoint Rate Limiter
+              ├── Throttled ─▶ job.moveToDelayed() + DelayedError (no retry burned)
+              └── Allowed ───▶ Decrypt AES-256-GCM Key ─▶ HMAC-SHA256 (eventId.ts.body)
+                    └──▶ fetch(POST) with AbortSignal.timeout
+                          ├── 2xx ──────────────▶ Record attempt (SUCCESS)
+                          ├── 408/429/5xx/Net ──▶ Exponential backoff (±50% jitter)
+                          └── 4xx / Exhausted ──▶ UnrecoverableError + Auto-Disable Endpoint`,
+      notes: [
+        { lead: "Rate limiting without burning retries:", body: "Distributed per-endpoint throttling via Bottleneck + Redis calls job.moveToDelayed() and throws DelayedError so throttled jobs wait instead of counting against max attempts." },
+        { lead: "Encrypted secrets & replay-safe signing:", body: "Endpoint secrets are stored encrypted with AES-256-GCM, decrypted in the worker, and used to sign eventId.timestamp.body as v1,<base64> alongside event-id and webhook-timestamp headers." },
+        { lead: "Error classification & circuit breaking:", body: "Retries only transient failures (network/timeout, 408, 429, 5xx) with ±50% jittered exponential backoff, fails fast on terminal 4xx via UnrecoverableError, and auto-disables endpoints exceeding max failures." }
+      ]
+    },
+    gpt: {
+      kicker: "PyTorch · Decoder-Only Transformer",
+      title: "GPT from Scratch",
+      repo: null,
+      flow:
+`Raw Text ──▶ Custom Tokenizer ──▶ Token + Positional Embeddings
+  └──▶ N × Transformer Decoder Blocks:
+        ├── LayerNorm ─▶ Masked Multi-Head Self-Attention ─▶ Residual (+)
+        └── LayerNorm ─▶ Feed-Forward MLP (GELU) ──────────▶ Residual (+)
+  └──▶ Final LayerNorm ─▶ Linear LM Head ─▶ Cross-Entropy Loss`,
+      notes: [
+        { lead: "Pre-LN decoder architecture:", body: "Applies LayerNorm before self-attention and MLP sub-layers for cleaner gradient flow during training." },
+        { lead: "Causal masking:", body: "Upper-triangular attention mask prevents tokens from attending to future positions during autoregressive next-token prediction." }
+      ]
+    }
+  };
+
+  const archDialog = document.getElementById('archDialog');
+  const archKicker = document.getElementById('archKicker');
+  const archTitle = document.getElementById('archTitle');
+  const archFlow = document.getElementById('archFlow');
+  const archNotes = document.getElementById('archNotes');
+  const archRepoLink = document.getElementById('archRepoLink');
+  const archCloseBtn = document.getElementById('archCloseBtn');
+
+  let supportsDisplayTransition;
+  function canTransitionDisplay(){
+    if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
+    if (!window.CSS?.supports?.('transition-behavior', 'allow-discrete') || !document.body) return false;
+    const probe = document.createElement('div');
+    probe.style.cssText = 'transition: display 1s allow-discrete !important; display: block;';
+    document.body.appendChild(probe);
+    getComputedStyle(probe).display;
+    probe.style.display = 'none';
+    supportsDisplayTransition = getComputedStyle(probe).display === 'block';
+    probe.remove();
+    return supportsDisplayTransition;
+  }
+  function supportsTopLayerExit(){
+    return window.CSS?.supports?.('overlay', 'auto') && canTransitionDisplay();
+  }
+  async function closeTopLayer(element){
+    if (!element.open) return;
+    if (!supportsTopLayerExit()){
+      element.setAttribute('data-closing', '');
+      const animations = element.getAnimations({ subtree: true });
+      if (animations.length > 0){
+        await Promise.race([
+          Promise.allSettled(animations.map(a => a.finished)),
+          new Promise(r => setTimeout(r, 400))
+        ]);
+      }
+      if (!element.hasAttribute('data-closing')) return;
+      element.removeAttribute('data-closing');
+    }
+    element.close();
+  }
+
+  function openArchModal(key){
+    const data = ARCH_DATA[key];
+    if (!data) return;
+    archDialog.removeAttribute('data-closing');
+    archKicker.textContent = data.kicker;
+    archTitle.textContent = data.title;
+    archFlow.textContent = data.flow;
+    archNotes.replaceChildren(...data.notes.map(item => {
+      const li = document.createElement('li');
+      const strong = document.createElement('b');
+      strong.textContent = item.lead + ' ';
+      li.appendChild(strong);
+      li.appendChild(document.createTextNode(item.body));
+      return li;
+    }));
+    if (data.repo){
+      archRepoLink.href = data.repo;
+      archRepoLink.hidden = false;
+    } else {
+      archRepoLink.hidden = true;
+    }
+    archDialog.showModal();
+  }
+
+  document.querySelectorAll('[data-arch]').forEach(btn => {
+    btn.addEventListener('click', () => openArchModal(btn.dataset.arch));
+  });
+  archCloseBtn.addEventListener('click', () => closeTopLayer(archDialog));
+  document.getElementById('archFootForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    closeTopLayer(archDialog);
+  });
+  archDialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeTopLayer(archDialog);
+  });
+  archDialog.addEventListener('close', () => {
+    archDialog.returnValue = '';
+  });
+
+  // Light-dismiss fallback for browsers without <dialog closedby="any">
+  if (!('closedBy' in HTMLDialogElement.prototype)){
+    const outside = (e, dialog) => {
+      const r = dialog.getBoundingClientRect();
+      return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    };
+    let pressedOutside = false;
+    archDialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, archDialog); });
+    archDialog.addEventListener('pointerup', (e) => {
+      if (pressedOutside && outside(e, archDialog)) closeTopLayer(archDialog);
+    });
+  }
+
+  // Animated terminal log
   const lines = [
     { p: "POST /agent/route", ok: null },
-    { p: "→ query: \"why did order #4021 fail inventory check?\"", ok: null },
-    { p: "→ dispatched to: Database Agent (DSPy)", ok: null },
-    { p: "→ live lookup: orders, inventory_holds", ok: null },
-    { p: "200 OK — plain-english answer returned in 340ms", ok: true },
+    { p: "→ query: \"high-protein cut plan + creatine timing\"", ok: null },
+    { p: "→ hybrid RAG: dense (bge-small) + BM25 + cross-encoder", ok: null },
+    { p: "→ guardrails: deterministic TDEE + Instructor JSON schema", ok: null },
+    { p: "200 OK — SSE stream + CI/CD evals passed", ok: true },
     { p: "", ok: null },
-    { p: "POST /agent/navigate", ok: null },
-    { p: "→ phrase: \"take me to the RBAC settings\"", ok: null },
-    { p: "→ resolved dashboard: /admin/roles", ok: null },
-    { p: "200 OK — routed, no menu traversal", ok: true },
+    { p: "POST /events", ok: null },
+    { p: "→ tx: event + active endpoint deliveries -> BullMQ", ok: null },
+    { p: "→ worker: Bottleneck check + AES-256-GCM + HMAC v1", ok: null },
+    { p: "200 OK — delivery attempt logged in PostgreSQL", ok: true },
   ];
   const el = document.getElementById('termBody');
   function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -768,7 +1170,7 @@
       div.innerHTML = l.ok ? `<span class="ok">${escapeHtml(l.p)}</span>` : prefix + escapeHtml(l.p);
       await sleep(l.ok ? 500 : 90);
     }
-    await sleep(1400);
+    await sleep(1600);
     typeLines();
   }
   function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
@@ -788,7 +1190,7 @@
     });
   });
 
-  updateProgress(); updateSpy();
+  updateProgress();
 </script>
 
 </body>
